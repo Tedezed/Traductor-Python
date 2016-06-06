@@ -8,7 +8,7 @@ from progress_bar import printProgress
 # Definir idiomas
 translator= Translator(from_lang="en", to_lang="es")
 
-# Definir ficheros y comvertir en cadena
+# Definir ficheros y convertir en cadena
 f = open("files", 'r')
 files_read = f.read()
 f.close()
@@ -33,7 +33,7 @@ for file_rst in list_rst_files:
 			list_file[n] = text
 		printProgress(n, len_list, prefix = 'Progreso:', suffix = 'Completado', barLength = 50)
 
-	# Combertir de nuevo en cadena
+	# Pasar de nuevo a cadena
 	doc = ""
 	for line in list_file:
 		doc = doc +  " \n" + line
