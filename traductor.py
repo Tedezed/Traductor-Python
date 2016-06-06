@@ -1,0 +1,42 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+from translate import Translator
+from progress_bar import 
+
+# Definir idiomas
+translator= Translator(from_lang="en", to_lang="es")
+
+# Definir ficheros y comvertir en cadena
+f = open("files", 'r')
+files_read = f.read()
+f.close()
+list_rst_files = files_read.split('\n')
+
+for file_rst in list_rst_files:
+	f = open(file_rst, 'r')
+	f_read = f.read()
+	f.close()
+
+	print "Traduciendo %s" % (file_rst)
+	# Separar cadena por linias e ignorar algunas
+	list_file = f_read.split('\n')
+	init_list = 0
+	len_list = len(list_file) - 1
+	printProgress(init_list, len_list, prefix = 'Progress:', suffix = 'Complete', barLength = 50)
+	for n,line in enumerate(list_file):
+		if line[:3] not in (".. ", "   ", "* :", "", "===", "---"):
+			text = translator.translate(line)
+			list_file[n] = text
+		printProgress(n, len_list, prefix = 'Progreso:', suffix = 'Completado', barLength = 50)
+
+	# Combertir de nuevo en cadena
+	doc = ""
+	for line in list_file:
+		doc = doc +  " \n" + line
+
+	# Guardar cadena
+	f = open(file_rst, 'w')
+	f.write(doc.encode('utf8'))
+	f.close()
