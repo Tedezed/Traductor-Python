@@ -28,6 +28,8 @@ for file_rst in list_rst_files:
 	for n,line in enumerate(list_file):
 		if line[:3] not in (".. ", "   ", "* :", "", "===", "---"):
 			text = translator.translate(line)
+			if text.split(':')[0] == "MYMEMORY WARNING":
+				raise Exception("MYMEMORY WARNING QUOTAREACHED: VISIT HTTP://MYMEMORY.TRANSLATED.NET/DOC/QUOTAREACHED")
 			list_file[n] = text
 		printProgress(n, len_list, prefix = 'Progreso:', suffix = 'Completado', barLength = 50)
 
