@@ -3,7 +3,7 @@
 
 import os
 from translate import Translator
-from progress_bar import 
+from progress_bar import printProgress
 
 # Definir idiomas
 translator= Translator(from_lang="en", to_lang="es")
